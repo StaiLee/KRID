@@ -1,3 +1,3 @@
 # KRID
 
-Kaan Ilyes Djibril Raphaël
+Kaan Raphaël Ilyes Djibril
