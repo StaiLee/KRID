@@ -44,6 +44,7 @@ a {
   gap: 2rem;
 }
 
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 body{
 	font-family: 'Poppins', sans-serif;
@@ -224,5 +225,29 @@ display: none;
   background-color: #000000;
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+=======
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100%;
+}
+
+.hero_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;;
+  width: 80%;
+  height: 50%;
+}
+
+
+.hero_container p {
+  text-align: center;
+  font-size: 20px;
+>>>>>>> 3d4c93149ec718e3cb7647b022ba561a2eb221be
 }
 
