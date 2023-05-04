@@ -44,4 +44,27 @@ a {
   gap: 2rem;
 }
 
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100%;
+}
+
+.hero_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;;
+  width: 80%;
+  height: 50%;
+}
+
+
+.hero_container p {
+  text-align: center;
+  font-size: 20px;
+}
 
