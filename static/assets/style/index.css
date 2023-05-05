@@ -3,21 +3,6 @@
   margin: 0;
 }
 
-body {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-h1 {
-  font-family: "Montserrat Medium";
-  max-width: 40ch;
-  text-align: center;
-  transform: scale(0.94);
-  animation: scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
-}
 @keyframes scale {
   100% {
     transform: scale(1);
