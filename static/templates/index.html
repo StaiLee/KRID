@@ -6,43 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" href="/static/assets/style/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/style/effetunderlign.css" type="text/css">
+    <link rel="stylesheet" href="../assets/style/index.css"
     <title>Home</title>
 </head>
 <body>
-    <style>
-
-p::before {  
-  transform: scaleX(0);
-  transform-origin: bottom right;
-}
-
-p:hover::before {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
-
-p::before {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
-  inset: 0 0 0 0;
-  background: hsl(180, 1%, 64%);
-  z-index: -1;
-  transition: transform .3s ease;
-}
-
-p {
-  position: relative;
-  font-size: 5rem;
-}
-
-html {
-  block-size: 100%;
-  inline-size: 100%;
-}
-
-    </style>
 
     <header>
         <div class="navbar">
