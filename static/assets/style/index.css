@@ -13,6 +13,7 @@ span {
   display: inline-block;
   opacity: 0;
   filter: blur(4px);
+  font-family: custom;
 }
 
 span:nth-child(1) {
