@@ -3,7 +3,8 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; 
+  color: black;
 }
 
 body {
@@ -14,7 +15,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Rubik", sans-serif;
+  font-family: "Rubik", sans-serif; 
+}
+
+a {
+  text-decoration: none;
 }
 
 .wrapper {

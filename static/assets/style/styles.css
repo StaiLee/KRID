@@ -1,8 +1,22 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins/Poppins-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: "HypeReality";
+  src: url("../fonts/HypeReality/Hypereality\ Sans\ Serif.ttf");
+}
+
+
+
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   color: black;
+  font-family: "HypeReality";
 }
 
 body {
@@ -224,6 +238,10 @@ display: none;
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
+
+
+
+MAIN
 .hero {
   display: flex;
   justify-content: center;
@@ -244,7 +262,10 @@ display: none;
 
 .hero_container p {
   text-align: center;
-  font-size: 20px;
+}
+.hero_container p span {
+  font-family: "HypeReality";
+  font-size: 25px;
 }
 
 
