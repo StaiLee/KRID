@@ -29,13 +29,15 @@
             <!-- SEARCHBAR -->
             <div class="search-container">
                 <form method="get" action="/pages/post">
-                    <img class="search-icon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU2Ljk2NiA1Ni45NjYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2Ljk2NiA1Ni45NjY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPHBhdGggZD0iTTU1LjE0Niw1MS44ODdMNDEuNTg4LDM3Ljc4NmMzLjQ4Ni00LjE0NCw1LjM5Ni05LjM1OCw1LjM5Ni0xNC43ODZjMC0xMi42ODItMTAuMzE4LTIzLTIzLTIzcy0yMywxMC4zMTgtMjMsMjMgIHMxMC4zMTgsMjMsMjMsMjNjNC43NjEsMCw5LjI5OC0xLjQzNiwxMy4xNzctNC4xNjJsMTMuNjYxLDE0LjIwOGMwLjU3MSwwLjU5MywxLjMzOSwwLjkyLDIuMTYyLDAuOTIgIGMwLjc3OSwwLDEuNTE4LTAuMjk3LDIuMDc5LTAuODM3QzU2LjI1NSw1NC45ODIsNTYuMjkzLDUzLjA4LDU1LjE0Niw1MS44ODd6IE0yMy45ODQsNmM5LjM3NCwwLDE3LDcuNjI2LDE3LDE3cy03LjYyNiwxNy0xNywxNyAgcy0xNy03LjYyNi0xNy0xN1MxNC42MSw2LDIzLjk4NCw2eiIgZmlsbD0iIzAwMDAwMCIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K">
-                    <input placeholder="Search.." type="text" class="search" style="background: white;" list="listArtists" onchange="location = this.value;" id="searchbarr" name="post-id">
+                    <img class="search-icon"
+                        src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU2Ljk2NiA1Ni45NjYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2Ljk2NiA1Ni45NjY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPHBhdGggZD0iTTU1LjE0Niw1MS44ODdMNDEuNTg4LDM3Ljc4NmMzLjQ4Ni00LjE0NCw1LjM5Ni05LjM1OCw1LjM5Ni0xNC43ODZjMC0xMi42ODItMTAuMzE4LTIzLTIzLTIzcy0yMywxMC4zMTgtMjMsMjMgIHMxMC4zMTgsMjMsMjMsMjNjNC43NjEsMCw5LjI5OC0xLjQzNiwxMy4xNzctNC4xNjJsMTMuNjYxLDE0LjIwOGMwLjU3MSwwLjU5MywxLjMzOSwwLjkyLDIuMTYyLDAuOTIgIGMwLjc3OSwwLDEuNTE4LTAuMjk3LDIuMDc5LTAuODM3QzU2LjI1NSw1NC45ODIsNTYuMjkzLDUzLjA4LDU1LjE0Niw1MS44ODd6IE0yMy45ODQsNmM5LjM3NCwwLDE3LDcuNjI2LDE3LDE3cy03LjYyNiwxNy0xNywxNyAgcy0xNy03LjYyNi0xNy0xN1MxNC42MSw2LDIzLjk4NCw2eiIgZmlsbD0iIzAwMDAwMCIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K">
+                    <input placeholder="Search.." type="text" class="search" style="background: white;"
+                        list="listArtists" onchange="location = this.value;" id="searchbarr" name="post-id">
                     <datalist id="listArtists">
-                    {{range $posts := .Post}}
-                    <option value="{{$posts.Id}}">{{$posts.Title}}</option>
-                    {{end}}
-                </datalist>
+                        {{range $posts := .Post}}
+                        <option value="{{$posts.Id}}">{{$posts.Title}}</option>
+                        {{end}}
+                    </datalist>
                 </form>
             </div>
             <!-- END SEARCHBAR -->
@@ -50,7 +52,8 @@
                 <a class="active" href="/pages/login">Log in</a> {{end}} {{if (ge .User.Level 2)}}
                 <a class="admin" href="/pages/admin">Admin</a> {{end}} {{if (ge .User.Level 1)}}
                 <a class="inactive" href="/pages/logout">Log out</a>
-                <a class="profile" href="/pages/profile"><img src="../assets/images/profile.png" style="width: 30px;"></a>
+                <a class="profile" href="/pages/profile"><img src="../assets/images/profile.png"
+                        style="width: 30px;"></a>
                 {{end}}
             </div>
             <!-- END PANNEL -->
@@ -63,34 +66,45 @@
 
         <link rel="stylesheet" type="text/css" href="../assets/css/cssregister.css">
 
-        <div class="item" style="display: flex;align-items: center;justify-content: center;margin-left: 0px;padding-left: 0px;">
+        <div class="item"
+            style="display: flex;align-items: center;justify-content: center;margin-left: 0px;padding-left: 0px;">
 
-            <form action="/pages/register" method="post" style="background-color: rgb(255, 255, 255);margin-right: 800px;margin-top: 50px;padding: 20px 300px 60px 40px;padding-right: 300px;width: 32em;--darkreader-inline-bgcolor: #131516;padding-right: 291px;margin-left: 800px;">
+            <form action="/pages/register" method="post"
+                style="background-color: rgb(255, 255, 255);margin-right: 800px;margin-top: 50px;padding: 20px 300px 60px 40px;padding-right: 300px;width: 32em;--darkreader-inline-bgcolor: #131516;padding-right: 291px;margin-left: 800px;">
                 <h2 style="margin-left: 170px;">Register</h2>
 
                 <label for="identifiant"><b>Username</b></label>
-                <input type="text" placeholder="Identifiant" name="identifiant" id="identifiant" onkeyup="check();" required="" style="width: 430px;padding: 15px;margin: 5px 0px 22px;border: medium none;background: rgb(241, 241, 241) none repeat scroll 0% 0%;--darkreader-inline-border-top: currentcolor;--darkreader-inline-border-right: currentcolor;--darkreader-inline-border-bottom: currentcolor;--darkreader-inline-border-left: currentcolor;--darkreader-inline-bgcolor: #1a1c1d;--darkreader-inline-bgimage: none;">
+                <input type="text" placeholder="Identifiant" name="identifiant" id="identifiant" onkeyup="check();"
+                    required=""
+                    style="width: 430px;padding: 15px;margin: 5px 0px 22px;border: medium none;background: rgb(241, 241, 241) none repeat scroll 0% 0%;--darkreader-inline-border-top: currentcolor;--darkreader-inline-border-right: currentcolor;--darkreader-inline-border-bottom: currentcolor;--darkreader-inline-border-left: currentcolor;--darkreader-inline-bgcolor: #1a1c1d;--darkreader-inline-bgimage: none;">
 
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Email" name="email" required="" onkeyup="check();" id="email" style="width: 430px;padding: 15px;margin: 5px 0px 22px;border: medium none;background: rgb(241, 241, 241) none repeat scroll 0% 0%;--darkreader-inline-border-top: currentcolor;--darkreader-inline-border-right: currentcolor;--darkreader-inline-border-bottom: currentcolor;--darkreader-inline-border-left: currentcolor;--darkreader-inline-bgcolor: #1a1c1d;--darkreader-inline-bgimage: none;">
+                <input type="text" placeholder="Email" name="email" required="" onkeyup="check();" id="email"
+                    style="width: 430px;padding: 15px;margin: 5px 0px 22px;border: medium none;background: rgb(241, 241, 241) none repeat scroll 0% 0%;--darkreader-inline-border-top: currentcolor;--darkreader-inline-border-right: currentcolor;--darkreader-inline-border-bottom: currentcolor;--darkreader-inline-border-left: currentcolor;--darkreader-inline-bgcolor: #1a1c1d;--darkreader-inline-bgimage: none;">
 
                 <label for="psw">
-                            <b>Password</b>
-                            <input type="password" id="password" onkeyup="check();" required="" style="width: 430px;padding: 15px;margin: 5px 0px 22px;border: medium none;background: rgb(241, 241, 241) none repeat scroll 0% 0%;--darkreader-inline-border-top: currentcolor;--darkreader-inline-border-right: currentcolor;--darkreader-inline-border-bottom: currentcolor;--darkreader-inline-border-left: currentcolor;--darkreader-inline-bgcolor: #1a1c1d;--darkreader-inline-bgimage: none;">
-                              
-                            <b>Confirm Password</b>
-                            <input type="password" name="password" id="confirm_password" onkeyup="check();" required="" style="width: 430px;padding: 15px;margin: 5px 0px 22px;border: medium none;background: rgb(241, 241, 241) none repeat scroll 0% 0%;--darkreader-inline-border-top: currentcolor;--darkreader-inline-border-right: currentcolor;--darkreader-inline-border-bottom: currentcolor;--darkreader-inline-border-left: currentcolor;--darkreader-inline-bgcolor: #1a1c1d;--darkreader-inline-bgimage: none;"> 
-                            <span id="message" style="width: 70px;overflow: hidden;white-space: nowrap;"></span>
+                    <b>Password</b>
+                    <input type="password" id="password" onkeyup="check();" required=""
+                        style="width: 430px;padding: 15px;margin: 5px 0px 22px;border: medium none;background: rgb(241, 241, 241) none repeat scroll 0% 0%;--darkreader-inline-border-top: currentcolor;--darkreader-inline-border-right: currentcolor;--darkreader-inline-border-bottom: currentcolor;--darkreader-inline-border-left: currentcolor;--darkreader-inline-bgcolor: #1a1c1d;--darkreader-inline-bgimage: none;">
+
+                    <b>Confirm Password</b>
+                    <input type="password" name="password" id="confirm_password" onkeyup="check();" required=""
+                        style="width: 430px;padding: 15px;margin: 5px 0px 22px;border: medium none;background: rgb(241, 241, 241) none repeat scroll 0% 0%;--darkreader-inline-border-top: currentcolor;--darkreader-inline-border-right: currentcolor;--darkreader-inline-border-bottom: currentcolor;--darkreader-inline-border-left: currentcolor;--darkreader-inline-bgcolor: #1a1c1d;--darkreader-inline-bgimage: none;">
+                    <span id="message" style="width: 70px;overflow: hidden;white-space: nowrap;"></span>
                 </label>
                 <p class="custom_checkbox error" style="width: 29em;">
                     <input type="checkbox" name="inscription_check" id="inscription_check" value="1" disabled>
-                    <label for="inscription_check" style="padding-right: 25px;margin-right: 17px;">I accept the conditions of use</label>
+                    <label for="inscription_check" style="padding-right: 25px;margin-right: 17px;">I accept the
+                        conditions of use</label>
                 </p>
-                <button type="submit" id="submit" style="background-color: rgb(4, 104, 170);color: white;padding: 16px 20px;border: medium none;cursor: pointer;width: 425px;margin-bottom: 10px;opacity: 0.8;--darkreader-inline-bgcolor: #02426d;--darkreader-inline-color: #bab8b6;--darkreader-inline-border-top: currentcolor;--darkreader-inline-border-right: currentcolor;--darkreader-inline-border-bottom: currentcolor;--darkreader-inline-border-left: currentcolor;">Register</button>
+                <button type="submit" id="submit"
+                    style="background-color: rgb(4, 104, 170);color: white;padding: 16px 20px;border: medium none;cursor: pointer;width: 425px;margin-bottom: 10px;opacity: 0.8;--darkreader-inline-bgcolor: #02426d;--darkreader-inline-color: #bab8b6;--darkreader-inline-border-top: currentcolor;--darkreader-inline-border-right: currentcolor;--darkreader-inline-border-bottom: currentcolor;--darkreader-inline-border-left: currentcolor;">Register</button>
             </form>
-            <script src="../assets/js/register.js"></script>
         </div>
     </login>
 </body>
+<footer>
+    <script src="../assets/js/register.js"></script>
+</footer>
 
 </html>

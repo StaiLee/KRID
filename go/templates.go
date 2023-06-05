@@ -13,6 +13,7 @@ import (
 func Home(w http.ResponseWriter, r *http.Request) {
 	Ratelimit(w, r)
 	Ifregistered(w, r)
+	Reports(w, r)
 	Getposts(w, r)
 	Addlike(w, r)
 	Notifications(w, r)

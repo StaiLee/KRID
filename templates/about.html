@@ -11,9 +11,6 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/header.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/searchbar.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/about.css">
-    
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="assets/js/dropdown.js"></script>
 </head>
 
 <body>
@@ -36,11 +33,10 @@
                 </form>
             </div>
             <!-- END SEARCHBAR -->
-
             <!-- PANNEL -->
             <div class="right-container">
                 {{if (ge .User.Level 1)}}
-                <img class="notification" src="../assets/images/share.png"> {{end}}
+                {{end}}
                 <a class="about" href="/pages/about">About Us</a> {{if (eq .User.Level 0)}}
                 <a class="register" href="/pages/register">Register</a>
                 <a class="active" href="/pages/login">Log in</a> {{end}} {{if (ge .User.Level 2)}}
@@ -53,6 +49,11 @@
         </div>
     </header>
     <!-- END HEADER -->
+
+    <footer>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="assets/js/dropdown.js"></script>
+    </footer>
 </body>
 
 </html>
