@@ -1,0 +1,12 @@
+create table User (
+ UID int primary key identity(1,1),
+ Username text,
+ PasswordHash text
+)
+
+create table UserSession ( //jsp encore ça
+ SessionKey text primary key,
+ UserID int not null, -- Could have a hard "references User"
+ LoginTime <time type> not null,
+ LastSeenTime <time type> not null
+)

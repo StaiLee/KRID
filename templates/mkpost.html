@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="../assets/images/logo.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/mkpost.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/searchbar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/searchbar.css">
+    <title>Say it !</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/dropdown.js"></script>
+</head>
+
+<body style="background-color: rgb(235, 239, 249);border-left-width: 0px;border-left-style: solid;">
+
+    <header>
+        <div class="header" id="myHeader">
+
+            <a href="../index.html" class="logo">
+                <div class="logo-containerr">
+                    <img src="../assets/img/KRID.png" class="logo-img"><img>
+                </div>
+            </a>
+
+            <!-- SEARCHBAR -->
+            <div class="search-container">
+                <form method="get" action="/pages/post">
+                    <img class="search-icon"
+                        src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU2Ljk2NiA1Ni45NjYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2Ljk2NiA1Ni45NjY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPHBhdGggZD0iTTU1LjE0Niw1MS44ODdMNDEuNTg4LDM3Ljc4NmMzLjQ4Ni00LjE0NCw1LjM5Ni05LjM1OCw1LjM5Ni0xNC43ODZjMC0xMi42ODItMTAuMzE4LTIzLTIzLTIzcy0yMywxMC4zMTgtMjMsMjMgIHMxMC4zMTgsMjMsMjMsMjNjNC43NjEsMCw5LjI5OC0xLjQzNiwxMy4xNzctNC4xNjJsMTMuNjYxLDE0LjIwOGMwLjU3MSwwLjU5MywxLjMzOSwwLjkyLDIuMTYyLDAuOTIgIGMwLjc3OSwwLDEuNTE4LTAuMjk3LDIuMDc5LTAuODM3QzU2LjI1NSw1NC45ODIsNTYuMjkzLDUzLjA4LDU1LjE0Niw1MS44ODd6IE0yMy45ODQsNmM5LjM3NCwwLDE3LDcuNjI2LDE3LDE3cy03LjYyNiwxNy0xNywxNyAgcy0xNy03LjYyNi0xNy0xN1MxNC42MSw2LDIzLjk4NCw2eiIgZmlsbD0iIzAwMDAwMCIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K">
+                    <input placeholder="Search.." type="text" class="search" style="background: white;"
+                        list="listArtists" onchange="location = this.value;" id="searchbarr" name="post-id">
+                    <datalist id="listArtists">
+                        {{range $posts := .Post}}
+                        <option value="{{$posts.Id}}">{{$posts.Title}}</option>
+                        {{end}}
+                    </datalist>
+                </form>
+            </div>
+            <!-- END SEARCHBAR -->
+
+            <!-- PANNEL -->
+            <div class="right-container">
+                {{if (ge .User.Level 1)}}
+                {{end}}
+                <a class="about" href="/pages/about">About Us</a> {{if (eq .User.Level 0)}}
+                <a class="register" href="/pages/register">Register</a>
+                <a class="active" href="/pages/login">Log in</a> {{end}} {{if (ge .User.Level 2)}}
+                <a class="admin" href="/pages/admin">Admin</a> {{end}} {{if (ge .User.Level 1)}}
+                <a class="inactive" href="/pages/logout">Log out</a>
+                <a class="profile" href="/pages/profile"><img src="../assets/images/profile.png"
+                        style="width: 30px;"></a>
+                {{end}}
+            </div>
+            <!-- END PANNEL -->
+        </div>
+    </header>
+
+    <div class="item" class="mkpost-container">
+
+        <form action="/pages/mkpost" method="post" class="mkpost-form" enctype="multipart/form-data">
+            <div class="mkpost-div">
+                <h2 class="mkpost-h2">New Post</h2>
+                <input type="text" placeholder="Title" name="title" id="title" required="" class="mkpost-input">
+                <textarea placeholder="Type your message here.." required="" name="content" id="content" rows="5"
+                    cols="33" class="mkpost-textarea"></textarea>
+                <input type="text" placeholder="Slash.." name="slash" id="slash" onkeypress=myKeyPress(event)
+                    required="" class="mkpost-input2">
+                <p id="displayslash" name="displayslash"></p>
+                <input type="file" accept=".png, .jpg, .jpeg, .gif" onchange="uploadFile()" name="file" id="file">
+                <p id="txt"></p>
+                <button type="submit" id="submit" name="submit" class="mkpost-button">Post</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="../assets/js/filesize.js"></script>
+    <script src="../assets/js/slash.js"></script>
+
+
+
+
+</body>
+
+</html>

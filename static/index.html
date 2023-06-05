@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>KRID</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/KRIDfav.png">
+    <link rel="stylesheet" type="text/css" href="assets/css/screen.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/searchbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/home.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/dropdown.css">
+</head>
+
+<body>
+    <div class="bg">
+    <!-- HEADER -->
+    <header>
+        <div class="header" id="myHeader">
+            <!-- LOGO -->
+            <a href="../index.html" class="logo">
+                <div class="logo-containerr">
+                    <img src="../assets/img/KRID.png" class="logo-img"><img>
+                </div>
+            </a>
+            <!-- END LOGO -->
+            <!-- SEARCHBAR -->
+            <div class="search-container">
+                <form method="get" action="/pages/post">
+                    <img class="search-icon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU2Ljk2NiA1Ni45NjYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2Ljk2NiA1Ni45NjY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPHBhdGggZD0iTTU1LjE0Niw1MS44ODdMNDEuNTg4LDM3Ljc4NmMzLjQ4Ni00LjE0NCw1LjM5Ni05LjM1OCw1LjM5Ni0xNC43ODZjMC0xMi42ODItMTAuMzE4LTIzLTIzLTIzcy0yMywxMC4zMTgtMjMsMjMgIHMxMC4zMTgsMjMsMjMsMjNjNC43NjEsMCw5LjI5OC0xLjQzNiwxMy4xNzctNC4xNjJsMTMuNjYxLDE0LjIwOGMwLjU3MSwwLjU5MywxLjMzOSwwLjkyLDIuMTYyLDAuOTIgIGMwLjc3OSwwLDEuNTE4LTAuMjk3LDIuMDc5LTAuODM3QzU2LjI1NSw1NC45ODIsNTYuMjkzLDUzLjA4LDU1LjE0Niw1MS44ODd6IE0yMy45ODQsNmM5LjM3NCwwLDE3LDcuNjI2LDE3LDE3cy03LjYyNiwxNy0xNywxNyAgcy0xNy03LjYyNi0xNy0xN1MxNC42MSw2LDIzLjk4NCw2eiIgZmlsbD0iIzAwMDAwMCIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K">
+                    <input placeholder="Search.." type="text" class="search" style="background: white;" list="listArtists" onchange="location = this.value;" id="searchbarr" name="post-id">
+                    <datalist id="listArtists">
+                    {{range $posts := .Post}}
+                    <option value="{{$posts.Id}}">{{$posts.Slash}} {{$posts.Title}}</option>
+                    {{end}}
+                </datalist>
+                </form>
+            </div>
+            <!-- END SEARCHBAR -->
+
+            <!-- PANNEL -->
+            <div class="right-container">
+                {{if (ge .User.Level 1)}}
+                {{end}}
+                <a class="about" href="/pages/about">About Us</a> {{if (eq .User.Level 0)}}
+                <a class="register" href="/pages/register">Register</a>
+                <a class="active" href="/pages/login">Log in</a> {{end}} {{if (ge .User.Level 2)}}
+                <a class="admin" href="/pages/admin">Admin</a> {{end}} {{if (ge .User.Level 1)}}
+                <a class="inactive" href="/pages/logout">Log out</a>
+                <a class="profile" href="/pages/profile"><img src="../assets/images/profile.png" class="a_img_30p"></a>
+                {{end}}
+            </div>
+            <!-- END PANNEL -->
+        </div>
+    </header>
+    <div class="wrapper">
+        <div class="notification_wrap">
+            <div class="notification_icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <div class="dropdown">
+                <div class="notify_item">
+                    <div class="notify_img">
+                        <img src="images/not_1.png" alt="profile_pic" class="nt_img">
+                    </div>
+                    <div class="notify_info">
+                        <p>Alex commented on<span>Timeline Share</span></p>
+                        <span class="notify_time">10 minutes ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END HEADER -->
+    <!-- FIRST CONTAINER FLEX -->
+    <div class="B_one">
+        <!-- BIG CONTAINER -->
+        <div class="B_two">
+            {{if (ge .User.Level 1)}}
+            <!-- NEWPOST FORM -->
+            <a href="/pages/mkpost"><img class="img_B" style="margin-top: 50px; margin-left: 850px;" src="../assets/img/nouveau-poste.png"></a>
+            <!-- END NEWPOST FORM -->
+            {{end}}
+
+            <!-- SCROLL INFINI -->
+            <div class="div_B">
+
+                <!-- Loop go -->
+                {{range $post := .Post}}
+                <div class="divv_B">
+                    <!-- LEFT BOX (GoIn / Likes) -->
+                    <Left_box>
+                        <!--Share-->
+                        <div class="d_B">
+                            <a href="/pages/post?post-id={{$post.Id}}"><img src=" ../assets/images/GoIn_Icon.png " class="c_B"> </a>
+                        </div>
+                        <!-- END Share -->
+                        <!-- Likes Icon -->
+                        <div class="e_B">
+                            <form action="/index.html?like={{$post.Id}}" method="post">
+                                <input type="image" name="submit" src="../assets/images/Heart_Icon.png " class="f_B">
+                            </form>
+                        </div>
+                        <!-- END Likes Icon -->
+                        <!-- Likes Number -->
+                        <div class="g_B">
+                            <p class="g_B_P_one">Likes :</p>
+                            <p class="g_B_P_two"> {{$post.Likes}}</p>
+                        </div>
+                        <!-- END Likes Number -->
+                    </Left_box>
+                    <!-- LEFT BOX (GoIn / Likes) -->
+
+                    <!-- LISTING POST -->
+                    <Post_Content class="post_ct">
+
+                        <h2 class="post_ctHtwo"> {{$post.Title}}</h2>
+
+                        {{if not (eq $post.Picture "none ")}}
+                        <insert_img class="post_ctImgC">
+                            <img src="/assets/temp-images/{{$post.Picture}} ">
+                        </insert_img> {{end}}
+
+                        <content_post class="post_ctTwo">
+                            <textarea readonly=" " placeholder="{{$post.Content}} " class="twt_a_ct_p"></textarea>
+                        </content_post>
+
+                    </Post_Content>
+                    <!-- END LISTING POST -->
+                </div>
+
+                <!--END RIGHT BOX (share / bin)-->
+                <!-- Report -->
+                {{if (eq $.User.Level 2)}}
+                <bin class="range_d">
+                    <a style="cursor: pointer;" onclick="openform('{{$post.Id}}')">
+                        <div class="range_d_d">
+                            <img src=" ../assets/images/Bin_Icon.png " class="range_d_d_img">
+                        </div>
+                    </a>
+                </bin>
+
+                <form action="/index.html?post-id={{$post.Id}}" method="post">
+                    <div id='{{$post.Id}}'>
+                        <input type="button" value="Exit" onclick="exitreport('{{$post.Id}}')"/>
+                        <h1>Report</h1>
+
+                        <textarea id="content" name="content" rows="5" cols="33" placeholder="Your message.."></textarea>
+
+                        <button>Click here to submit the report</button>
+                        <script> exitreport('{{$post.Id}}') </script>
+                        <p id="msg"></p>
+                    </div>
+                </form>
+                <!-- END Report -->
+                <script src="assets/js/reportpopup.js"></script>
+                {{end}}
+                <!-- END Loop go -->
+                {{end}}
+            </div>
+            <!-- END SCROLL INFINI -->
+        </div>
+        <!-- END BIG CONTAINER -->
+    </div>
+    <!-- END FIRST CONTAINER FLEX -->
+ </div>
+</body>
+<footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/dropdown.js"></script>
+</footer>
+
+</html>

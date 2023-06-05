@@ -1,0 +1,31 @@
+.mkpost-container {
+  display: flex;align-items: center;justify-content: center;margin-left: 0px;padding-left: 0px; margin-right:500px;
+  }
+
+.mkpost-form {
+  background-color: rgb(255, 255, 255);width: 1200px;height: 620px;margin-left: 350px;margin-right: 200px;margin-top: 75px;margin-bottom: 34px;padding-bottom: 0px;
+    }
+
+.mkpost-div {
+  flex-direction: column;display: flex;margin-right: 800px;margin-top: 50px;padding: 20px 300px 60px 40px;padding-right: 300px;width: 34em;margin-left: 350px;margin-bottom: 7px;padding-bottom: 70px;
+}
+
+.mkpost-h2 {
+  width: 700px; overflow: hidden;margin-left: 150px;
+}
+
+.mkpost-input {
+  width: 860px;padding: 15px;margin: 5px 0px 22px;border: medium none;background: rgb(241, 241, 241) none repeat scroll 0% 0%;margin-left: -215px;
+}
+
+.mkpost-textarea {
+  width: 859px; padding: 15px 15px 116px; margin: 5px 0px 46px -215px; border: medium none; background: rgb(241, 241, 241) none repeat scroll 0% 0%; height: 231px;resize: none;
+}
+
+.mkpost-input2 {
+  width: 860px;padding: 15px;margin: 5px 0px 22px;border: medium none;background: rgb(241, 241, 241) none repeat scroll 0% 0%;margin-left: -215px;  margin-top: -40px;
+}
+
+.mkpost-button {
+  background-color: rgb(66, 66, 66);color: white;padding: 16px 20px;border: medium none;cursor: pointer;width: 425px;opacity: 0.8;margin-bottom: 81px; margin-top: -25px;
+}

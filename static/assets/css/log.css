@@ -1,0 +1,56 @@
+body {
+    background-color: rgb(235, 239, 249);
+    border-left-width: 0px;
+    border-left-style: solid;
+}
+
+.div_log {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form_A {
+    background-color: rgb(255, 255, 255);
+    margin-left: 800px;
+    margin-right: 800px;
+    margin-top: 100px;
+    padding: 20px 300px 60px 40px;
+    width: 17em;
+    padding-right: 291px;
+}
+.inpt_d{
+    width: 250px;
+    padding: 15px;
+    margin: 5px 0px 22px;
+    border: medium none;
+    background: rgb(241, 241, 241) none repeat scroll 0% 0%;
+}
+.h2_pt{
+margin-left: 90px;
+}
+.pswd_d{
+   width: 250px;
+}
+.pswd_js{
+width: 250px;
+padding: 15px;
+margin: 5px 0px 22px;
+border: medium none;
+background: rgb(241, 241, 241) none repeat scroll 0% 0%;
+}
+.msg_d{
+    width: 70px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.button_d{
+    background-color: rgb(4, 104, 170);
+    color: white;
+    padding: 16px 20px;
+    border: medium none;
+    cursor: pointer;
+    width: 250px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}

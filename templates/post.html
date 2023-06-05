@@ -1,0 +1,129 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>KRID</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/KRIDfav.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/posts.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/csslog.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/searchbar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/comment.css">
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/dropdown.js"></script>
+</head>
+
+<body style="background-color: rgb(235, 239, 249);border-left-width: 0px;border-left-style: solid;">
+
+    <header style="margin-top: -22px;">
+        <div class="header" id="myHeader">
+
+            <a href="../index.html" class="logo">
+                <div class="logo-containerr">
+                    <img src="../assets/img/KRID.png" class="logo-img"><img>
+                </div>
+            </a>
+
+
+            <!-- SEARCHBAR -->
+            <div class="search-container">
+                <form method="get" action="/pages/post">
+                    <img class="search-icon" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU2Ljk2NiA1Ni45NjYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDU2Ljk2NiA1Ni45NjY7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPHBhdGggZD0iTTU1LjE0Niw1MS44ODdMNDEuNTg4LDM3Ljc4NmMzLjQ4Ni00LjE0NCw1LjM5Ni05LjM1OCw1LjM5Ni0xNC43ODZjMC0xMi42ODItMTAuMzE4LTIzLTIzLTIzcy0yMywxMC4zMTgtMjMsMjMgIHMxMC4zMTgsMjMsMjMsMjNjNC43NjEsMCw5LjI5OC0xLjQzNiwxMy4xNzctNC4xNjJsMTMuNjYxLDE0LjIwOGMwLjU3MSwwLjU5MywxLjMzOSwwLjkyLDIuMTYyLDAuOTIgIGMwLjc3OSwwLDEuNTE4LTAuMjk3LDIuMDc5LTAuODM3QzU2LjI1NSw1NC45ODIsNTYuMjkzLDUzLjA4LDU1LjE0Niw1MS44ODd6IE0yMy45ODQsNmM5LjM3NCwwLDE3LDcuNjI2LDE3LDE3cy03LjYyNiwxNy0xNywxNyAgcy0xNy03LjYyNi0xNy0xN1MxNC42MSw2LDIzLjk4NCw2eiIgZmlsbD0iIzAwMDAwMCIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K">
+                    <input placeholder="Search.." type="text" class="search" style="background: white;" list="listArtists" onchange="location = this.value;" id="searchbarr" name="post-id">
+                    <datalist id="listArtists">
+                    {{range $posts := .Post}}
+                    <option value="{{$posts.Id}}">{{$posts.Title}}</option>
+                    {{end}}
+                </datalist>
+                </form>
+            </div>
+            <!-- END SEARCHBAR -->
+
+
+
+            <!-- PANNEL -->
+            <div class="right-container">
+                {{if (ge .User.Level 1)}}
+                <img class="notification" src="../assets/images/share.png"> {{end}}
+                <a class="about" href="/pages/about">About Us</a> {{if (eq .User.Level 0)}}
+                <a class="register" href="/pages/register">Register</a>
+                <a class="active" href="/pages/login">Log in</a> {{end}} {{if (ge .User.Level 2)}}
+                <a class="admin" href="/pages/admin">Admin</a> {{end}} {{if (ge .User.Level 1)}}
+                <a class="inactive" href="/pages/logout">Log out</a>
+                <a class="profile" href="/pages/profile"><img src="../assets/images/profile.png" style="width: 30px;"></a>
+                {{end}}
+            </div>
+            <!-- END PANNEL -->
+        </div>
+    </header>
+    <br><br> {{range $post := .Post}}
+    <div style="display: flex;justify-content: center;margin-right: 70px;margin-left: 70px;">
+        <form action="/pages/mkpost" method="post" enctype="multipart/form-data" style="width: 97em;background-color: rgb(255, 255, 255);display: flex;flex-direction: column;align-content: center;align-items: center;">
+            <h2 style="width: auto;">{{$post.Title}}</h2>
+            <textarea readonly="" placeholder="{{$post.Content}}" rows="5" cols="33" style="width: 97em; padding: 15px 15px 116px;  border: medium none; background: rgb(241, 241, 241) none repeat scroll 0% 0%; height: auto;resize: none;"></textarea>
+            <p> </p>
+            <p> </p>
+        </form>
+    </div>
+    {{end}} {{range $comment := .Comments}}
+    <div class="container" style="display: flex;justify-content: center;margin-right: 70px;margin-left: 70px;">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="media g-mb-30 media-comment">
+                    <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image Description">
+                    <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+                        <div class="g-mb-15">
+                            <h5 class="h5 g-color-gray-dark-v1 mb-0">{{$comment.Username}}</h5>
+                            <span class="g-color-gray-dark-v4 g-font-size-12">{{$comment.Date}}</span>
+                        </div>
+                        <p>{{$comment.Comment}}</p>
+
+
+                        {{if not (eq $comment.File "none")}}
+                        <insert_img style="display: flex;flex-flow: row-reverse;">
+                            <img src="/assets/temp-images/{{$comment.File}}" style="width: 30px; ">
+                        </insert_img> {{end}}
+
+                        <ul class="list-inline d-sm-flex my-0">
+                            <li class="list-inline-item g-mr-20">
+                                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                    <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3"></i> 178
+                                </a>
+                            </li>
+                            <li class="list-inline-item g-mr-20">
+                                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                    <i class="fa fa-thumbs-down g-pos-rel g-top-1 g-mr-3"></i> 34
+                                </a>
+                            </li>
+                            <li class="list-inline-item ml-auto">
+                                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                    <i class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i> Reply
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+            <div class="item" style="display: flex;justify-content: center;">
+
+                <form method="post" style="background-color: rgb(255, 255, 255);margin-top: 75px;margin-bottom: 34px;width: 97em;background-color: rgb(255, 255, 255);"  enctype="multipart/form-data">
+                    <div style="flex-direction: column;display: flex;align-items: center;">
+                        <h2 style="overflow: hidden;">Add a comment</h2>
+
+                        <input placeholder="Type your message here.." type="text" id="comment" name="comment" required="" rows="5" cols="33" style=" width: -moz-available;margin-right: 3em;margin-left: 3em;padding: 15px 15px 116px;  border: medium none; background: rgb(241, 241, 241) none repeat scroll 0% 0%; height: 231px;resize: none;"></input>
+                        <p></p>
+                        <input type="file" accept=".png, .jpg, .jpeg, .gif" onchange="uploadFile()" name="file" id="file" formenctype="multipart/form-data">
+                        <p id="txt"></p>
+                        <button type="submit" id="submit" name="submit" style="width: 17em;background-color: rgb(99, 99, 99);color: rgb(255, 255, 255);padding: 16px 20px;border: medium none;cursor: pointer;opacity: 0.8;margin-bottom: 38px;">Post</button>
+                    </div>
+                </form>
+            </div>
+
+            <script src="../assets/js/filesize.js"></script>
+
+</body>
+
+</html>
