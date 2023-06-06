@@ -1,5 +1,5 @@
 # KRID
-simple forum developper en golang avec un system de register / logout afin de pour poster des posts, repondres a ces derniers et egalement les liker avec un systeme de ratelimit ansi qune fonctionnalité des hash pour les mots de passe presents dans la DB
+simple forum developper en golang avec un system de register / logout afin de pouvoir poster des posts, repondres a ces derniers et egalement les liker avec un systeme de ratelimit ainsi qu'une fonctionnalitée de hash pour les mots de passe presents dans la DB
 
 ## Tech
 Golang html css jss SQL
