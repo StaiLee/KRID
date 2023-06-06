@@ -2,10 +2,7 @@ package module
 
 import (
 	"database/sql"
-	"encoding/json"
 	"html/template"
-	"io/ioutil"
-	"log"
 	"net/http"
 	"path/filepath"
 )
@@ -31,34 +28,6 @@ func Profile(w http.ResponseWriter, r *http.Request) {
 func Aboutus(w http.ResponseWriter, r *http.Request) {
 	Ratelimit(w, r)
 	Ifregistered(w, r)
-	var admin jsonUser // api github fetch
-	if templ.JsonUser == nil {
-		urls := [2]string{"https://api.github.com/users/luxchar", "https://api.github.com/users/naywvi"}
-		for _, url := range urls {
-			// request http api
-			res, err := http.Get(url)
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			// read body
-			body, err := ioutil.ReadAll(res.Body)
-			res.Body.Close()
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			if res.StatusCode != 200 {
-				log.Fatal("Unexpected status code", res.StatusCode)
-			}
-
-			err = json.Unmarshal(body, &admin)
-			if err != nil {
-				log.Fatal(err)
-			}
-			templ.JsonUser = append(templ.JsonUser, admin)
-		}
-	}
 	template.Must(template.ParseFiles(filepath.Join(templatesDir, "./templates/about.html"))).Execute(w, templ)
 }
 

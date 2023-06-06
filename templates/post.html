@@ -43,7 +43,7 @@
             <!-- PANNEL -->
             <div class="right-container">
                 {{if (ge .User.Level 1)}}
-                <img class="notification" src="../assets/images/share.png"> {{end}}
+                 {{end}}
                 <a class="about" href="/pages/about">About Us</a> {{if (eq .User.Level 0)}}
                 <a class="register" href="/pages/register">Register</a>
                 <a class="active" href="/pages/login">Log in</a> {{end}} {{if (ge .User.Level 2)}}
