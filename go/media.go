@@ -8,37 +8,37 @@ import (
 	"time"
 )
 
-func Dellike(w http.ResponseWriter, r *http.Request) { //remove like
+func Dellike(w http.ResponseWriter, r *http.Request) { //enleve les likes
 	print("idem")
 }
 
-func Deldislike(w http.ResponseWriter, r *http.Request) { //remove dislike
+func Deldislike(w http.ResponseWriter, r *http.Request) { //enleves les dislike
 	print("idem")
 }
 
-func Adddislike(w http.ResponseWriter, r *http.Request) { //adds a dislike to a post
+func Adddislike(w http.ResponseWriter, r *http.Request) { //ajout des likes dans un post
 	_ = r.ParseForm()
 	db, _ := sql.Open("sqlite3", "./database.db")
-	id := r.URL.Query()["dislike"] //NEEDS RIGHT POST ID
+	id := r.URL.Query()["dislike"]
 	if id == nil {
 		return
 	}
 	postid := id[0]
 	var dislikes int
-	if err := db.QueryRow("SELECT dislikes from posts where postid = ?", postid).Scan(&dislikes); err != nil { //request going to the database
+	if err := db.QueryRow("SELECT dislikes from posts where postid = ?", postid).Scan(&dislikes); err != nil { //requete vers la database
 		return
 	}
 	dislikes += 1
 	_, _ = db.Exec("UPDATE posts SET dislikes = ? WHERE postid = ?", dislikes, postid)
 }
 
-func Addlike(w http.ResponseWriter, r *http.Request) { //adds a like to a post
+func Addlike(w http.ResponseWriter, r *http.Request) { //ajout d'un like dans un post
 	if !Ifregistered(w, r) {
 		return
 	}
 	_ = r.ParseForm()
 	db, _ := sql.Open("sqlite3", "./database.db")
-	id := r.URL.Query()["like"] //NEEDS RIGHT POST ID
+	id := r.URL.Query()["like"]
 	if id == nil {
 		return
 	}
@@ -53,7 +53,7 @@ func Addlike(w http.ResponseWriter, r *http.Request) { //adds a like to a post
 	if err := db.QueryRow("SELECT karma FROM interaction WHERE postid = ? AND uuid = ?", postid, uuid).Scan(&likes); err != sql.ErrNoRows && err != nil { //request going to the database
 		return
 	}
-	if likes == 1 { //user already liked
+	if likes == 1 { //si l'utilisateur a deja like
 		return
 	}
 	dt := time.Now()
@@ -61,12 +61,12 @@ func Addlike(w http.ResponseWriter, r *http.Request) { //adds a like to a post
 
 	db, _ = sql.Open("sqlite3", "./database.db")
 	reqdata := "INSERT INTO interaction(postid, uuid, karma, date) VALUES (?, ?, ?, ?)"
-	request, _ := db.Prepare(reqdata) // Prepare request.
+	request, _ := db.Prepare(reqdata) // prepare la reuete
 	_, err = request.Exec(postid, uuid, 1, dt)
 	fmt.Print(err)
 
 	defer request.Close()
-	if err := db.QueryRow("SELECT likes from posts where postid = ?", postid).Scan(&likes); err != nil { //request going to the database
+	if err := db.QueryRow("SELECT likes from posts where postid = ?", postid).Scan(&likes); err != nil { //request va dans la database
 		fmt.Print(err)
 		return
 	}
@@ -76,7 +76,7 @@ func Addlike(w http.ResponseWriter, r *http.Request) { //adds a like to a post
 	db.Close()
 }
 
-func Addcomment(w http.ResponseWriter, r *http.Request) { //adds a comment to a post
+func Addcomment(w http.ResponseWriter, r *http.Request) { //ajout d'un commentaire dans un post
 	if !Ifregistered(w, r) {
 		return
 	}
@@ -92,30 +92,30 @@ func Addcomment(w http.ResponseWriter, r *http.Request) { //adds a comment to a 
 	u, _ := r.Cookie("uuid")
 	uuid := u.String()
 	uuid = uuid[5:]
-	var Com Comment                                                                                                                                                    //store single comment
-	if err := db.QueryRow("SELECT creationdate, username, level from users where uuid = ?", uuid).Scan(&Com.Creationdateuser, &Com.Username, &Com.Level); err != nil { //request going to the database
+	var Com Comment
+	if err := db.QueryRow("SELECT creationdate, username, level from users where uuid = ?", uuid).Scan(&Com.Creationdateuser, &Com.Username, &Com.Level); err != nil { //requete Database
 		return
 	}
 	dt := time.Now()
 	dt.Format("01-02-2006 15:04:05")
 
 	reqdata := "INSERT INTO interaction(postid, uuid, karma, date) VALUES (?, ?, ?, ?)"
-	request, _ := db.Prepare(reqdata) // Prepare request.
+	request, _ := db.Prepare(reqdata) // Prepare la requete
 	_, _ = request.Exec(post_id, uuid, 1, dt)
 	defer request.Close()
 
 	reqdata = "INSERT INTO comments(creator, postid, comment, likes, dislikes, file, creationdateuser, username, level, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-	request, _ = db.Prepare(reqdata) // Prepare request.
+	request, _ = db.Prepare(reqdata) // Prepare la requete
 	_, _ = request.Exec(uuid, post_id[0], comment, 0, 0, file, Com.Creationdateuser, Com.Username, Com.Level, dt)
 	defer request.Close()
 }
 
-func Getcomments(w http.ResponseWriter, r *http.Request) { //gets all the comment of a post
+func Getcomments(w http.ResponseWriter, r *http.Request) { //tout les commentaires d'un post
 	db, _ := sql.Open("sqlite3", "./database.db")
 	post_id := r.URL.Query()["post-id"]
 	postint, _ := strconv.Atoi(post_id[0])
 	rows, _ := db.Query("SELECT * FROM comments WHERE postid = ?", &postint)
-	var Com Comment //store single comment
+	var Com Comment //seul commentaire
 	templ.Comments = nil
 	for rows.Next() {
 		if err := rows.Scan(&Com.Creator, &Com.Postid, &Com.Comment, &Com.Likes, &Com.Dislikes, &Com.File, &Com.Creationdateuser, &Com.Username, &Com.Level, &Com.Date); err != nil {

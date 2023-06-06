@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func Getprofileinfo(w http.ResponseWriter, r *http.Request) { //gets notification for a user
+func Getprofileinfo(w http.ResponseWriter, r *http.Request) { //notification utilisateur
 	db, _ := sql.Open("sqlite3", "./database.db")
 	creator, _ := r.Cookie("uuid")
 	u := creator.String()
@@ -45,7 +45,7 @@ func Getprofileinfo(w http.ResponseWriter, r *http.Request) { //gets notificatio
 	defer rows.Close()
 }
 
-func Notifications(w http.ResponseWriter, r *http.Request) { //gets notification for a user NOT YET FINISHED
+func Notifications(w http.ResponseWriter, r *http.Request) { //avoir notification
 	if !Ifregistered(w, r) {
 		return
 	}
@@ -54,7 +54,7 @@ func Notifications(w http.ResponseWriter, r *http.Request) { //gets notification
 	u := creator.String()
 	u = u[5:]
 	templ.Inter = nil
-	rows, err := db.Query("SELECT * FROM posts WHERE creator = ? ORDER BY date", u) //fetch user posts
+	rows, err := db.Query("SELECT * FROM posts WHERE creator = ? ORDER BY date", u)
 	fmt.Print(err)
 	for rows.Next() {
 		if err := rows.Scan(&Notif.Post.Id, &Notif.Post.Creator, &Notif.Post.Title, &Notif.Post.Content, &Notif.Post.Picture, &Notif.Post.Likes, &Notif.Post.Dislikes, &Notif.Post.Slash, &Notif.Post.Date); err != nil {
@@ -63,7 +63,7 @@ func Notifications(w http.ResponseWriter, r *http.Request) { //gets notification
 			return
 		}
 
-		rows2, _ := db.Query("SELECT * FROM interaction WHERE postid = ? ORDER BY date LIMIT 2", &Notif.Post.Id) //fetch likes dropped under user posts
+		rows2, _ := db.Query("SELECT * FROM interaction WHERE postid = ? ORDER BY date LIMIT 2", &Notif.Post.Id) //j'aime post
 		var Inter Interaction
 		for rows2.Next() {
 			if err := rows.Scan(&Inter.Postid, &Inter.Uuid, &Inter.Date); err != nil {
@@ -76,7 +76,7 @@ func Notifications(w http.ResponseWriter, r *http.Request) { //gets notification
 		}
 		defer rows2.Close()
 
-		rows3, _ := db.Query("SELECT * FROM comments WHERE postid = ? ORDER BY date LIMIT 3", &Notif.Post.Id) //fetch comments dropped under user posts
+		rows3, _ := db.Query("SELECT * FROM comments WHERE postid = ? ORDER BY date LIMIT 3", &Notif.Post.Id) //commentaire en dessous post
 		for rows3.Next() {
 			templ.Comments = nil
 			var Com Comment
@@ -90,7 +90,7 @@ func Notifications(w http.ResponseWriter, r *http.Request) { //gets notification
 		}
 		defer rows3.Close()
 
-		if len(templ.Notif.Com)+len(templ.Notif.Inter) >= 4 { //limit number of notifications to 4-5 max
+		if len(templ.Notif.Com)+len(templ.Notif.Inter) >= 4 { //limitation des notifications
 			defer rows.Close()
 			return
 		}

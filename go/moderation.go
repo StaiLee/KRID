@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func Reports(w http.ResponseWriter, r *http.Request) { //makes a report to admin
+func Reports(w http.ResponseWriter, r *http.Request) { // faire un report admin
 	_ = r.ParseForm()
 	postid := r.URL.Query()["post-id"]
 	if postid == nil {
@@ -23,7 +23,7 @@ func Reports(w http.ResponseWriter, r *http.Request) { //makes a report to admin
 	defer request.Close()
 }
 
-func Getreport(w http.ResponseWriter, r *http.Request) { //get the reports to see them
+func Getreport(w http.ResponseWriter, r *http.Request) { //listes des reports
 	var report Report
 	db, _ := sql.Open("sqlite3", "./database.db")
 	rows, _ := db.Query("SELECT report, user, postid, reportid FROM report LIMIT 10")
@@ -37,7 +37,7 @@ func Getreport(w http.ResponseWriter, r *http.Request) { //get the reports to se
 	}
 }
 
-func Getadmin(w http.ResponseWriter, r *http.Request) { //get the list of admins
+func Getadmin(w http.ResponseWriter, r *http.Request) { //liste des admins
 	var mod Mod
 	db, _ := sql.Open("sqlite3", "./database.db")
 	rows, _ := db.Query("SELECT uuid, username, email, creationdate, level FROM users WHERE level = 2 OR level = 3")
@@ -51,7 +51,7 @@ func Getadmin(w http.ResponseWriter, r *http.Request) { //get the list of admins
 	}
 }
 
-func Delpost(w http.ResponseWriter, r *http.Request) { //remove post NOT TESTED
+func Delpost(w http.ResponseWriter, r *http.Request) { //supprime poste
 	postid := r.PostForm.Get("postid")
 	db, _ := sql.Open("sqlite3", "./database.db")
 	if err := db.QueryRow("DELETE FROM posts WHERE postid = ?", postid); err != nil { //request going to the database

@@ -31,7 +31,7 @@ func Aboutus(w http.ResponseWriter, r *http.Request) {
 	template.Must(template.ParseFiles(filepath.Join(templatesDir, "./templates/about.html"))).Execute(w, templ)
 }
 
-func Admin(w http.ResponseWriter, r *http.Request) { //remove cookie on logout
+func Admin(w http.ResponseWriter, r *http.Request) {
 	Ratelimit(w, r)
 	db, _ := sql.Open("sqlite3", "./database.db")
 	if !Ifregistered(w, r) {
@@ -41,7 +41,7 @@ func Admin(w http.ResponseWriter, r *http.Request) { //remove cookie on logout
 	u := uuid.String()
 	u = u[5:]
 	level := 0
-	if err := db.QueryRow("SELECT level from users where uuid = ?", u).Scan(&level); err != nil { //request going to the database
+	if err := db.QueryRow("SELECT level from users where uuid = ?", u).Scan(&level); err != nil {
 		return
 	}
 	if level == 3 { //check user level

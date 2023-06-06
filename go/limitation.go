@@ -27,28 +27,27 @@ func Countdown(nb int) {
 	t2 := time.Now()
 	t1 := requests[nb].time
 	elapsed := t2.Sub(t1)
-	elapsedinseconds := int(elapsed)/10000000 + requests[nb].spentintime //convert to hundredth of a seconds
+	elapsedinseconds := int(elapsed)/10000000 + requests[nb].spentintime //conversion des secondes
 	if elapsedinseconds > 100 {
-		//NEED TO REMOVE THE IP FROM THE LIST
 		requests[nb].count = 0
 		requests[nb].time = time.Now()
 		requests[nb].spentintime = 0
-	} else { //add the nano seconds spent
+	} else { //ajout du temps
 		requests[nb].spentintime += elapsedinseconds
 	}
 }
 
 func Ratelimit(w http.ResponseWriter, r *http.Request) {
 	nb := Contains(requests, r.RemoteAddr)
-	if nb != -1 { //if the ip is known
+	if nb != -1 { //si l'ip est correct
 		Countdown(nb)
-		if requests[nb].count < 3 { //number of request is respected
+		if requests[nb].count < 3 { //nombre de requete bonne
 			requests[nb].count++
 			return
-		} else { //if too many requests
+		} else { //si trop de requete
 			http.Error(w, "Too many requests", http.StatusTooManyRequests)
 		}
-	} else { //if the ip is unknown
+	} else { //si l'ip est inconnu
 		requests = append(requests, Request{r.RemoteAddr, 1, time.Now(), 0})
 	}
 }

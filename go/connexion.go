@@ -11,7 +11,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func Register(w http.ResponseWriter, r *http.Request) { //register into your account
+func Register(w http.ResponseWriter, r *http.Request) { //connexion a un compte
 	Ifregistered(w, r)
 	_ = r.ParseForm()
 	db, _ := sql.Open("sqlite3", "./database.db")
@@ -19,14 +19,14 @@ func Register(w http.ResponseWriter, r *http.Request) { //register into your acc
 	email := r.PostForm.Get("email")
 	password := r.PostForm.Get("password")
 	date := time.Now().Format("02-01-2006")
-	if username == "" { //first load of page
+	if username == "" { //execution de la template
 		template.Must(template.ParseFiles(filepath.Join(templatesDir, "./templates/register.html"))).Execute(w, templ)
 		return
 	}
 	u, _ := uuid.NewV4()
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(password), 8)
 	reqdata := `INSERT INTO users(uuid, username, email, password, creationdate, level, karma) VALUES (?, ?, ?, ?, ?, ?, ?)`
-	request, _ := db.Prepare(reqdata) // Prepare request.
+	request, _ := db.Prepare(reqdata) // preparation de la requete
 	_, _ = request.Exec(u.String(), username, email, hashedPassword, date, 1, 0)
 	defer request.Close()
 	expiration := time.Now().Add(365 * 24 * time.Hour)
@@ -35,7 +35,7 @@ func Register(w http.ResponseWriter, r *http.Request) { //register into your acc
 	http.Redirect(w, r, "/index.html", http.StatusFound)
 }
 
-func Login(w http.ResponseWriter, r *http.Request) { //login to your account
+func Login(w http.ResponseWriter, r *http.Request) { //connexion login a un compte existant
 	Ifregistered(w, r)
 	_ = r.ParseForm()
 	db, _ := sql.Open("sqlite3", "./database.db")
@@ -46,26 +46,26 @@ func Login(w http.ResponseWriter, r *http.Request) { //login to your account
 		template.Must(template.ParseFiles(filepath.Join(templatesDir, "./templates/login.html"))).Execute(w, templ)
 		return
 	}
-	if err := db.QueryRow("SELECT password from users where email = ?", email).Scan(&passworddb); err != nil { //request going to the database
+	if err := db.QueryRow("SELECT password from users where email = ?", email).Scan(&passworddb); err != nil { //requete allant dans la database
 		template.Must(template.ParseFiles(filepath.Join(templatesDir, "./templates/login.html"))).Execute(w, templ)
 		return
 	}
-	if err := bcrypt.CompareHashAndPassword([]byte(passworddb), []byte(password)); err != nil { //comparison between hashed password and input password
-		w.WriteHeader(http.StatusUnauthorized) // error passwords do not match
+	if err := bcrypt.CompareHashAndPassword([]byte(passworddb), []byte(password)); err != nil { //comparaison entre le mot de passe, et la version de ce dernier hasher
+		w.WriteHeader(http.StatusUnauthorized) // mot de passe incorrect
 	}
-	//password matches
+	//mot de passe correct
 	var uuid string
-	if err := db.QueryRow("SELECT uuid from users where email = ?", email).Scan(&uuid); err != nil { //request going to the database
+	if err := db.QueryRow("SELECT uuid from users where email = ?", email).Scan(&uuid); err != nil { //requete allant dans la database
 		template.Must(template.ParseFiles(filepath.Join(templatesDir, "./templates/login.html"))).Execute(w, templ)
 		return
 	}
-	expiration := time.Now().Add(365 * 24 * time.Hour) //get uuid from database and set cookie with it
+	expiration := time.Now().Add(365 * 24 * time.Hour) //prise des uuid et mise en place des cookies
 	cookie := http.Cookie{Name: "uuid", Value: uuid, Expires: expiration, Path: "/"}
 	http.SetCookie(w, &cookie)
 	http.Redirect(w, r, "/index.html", http.StatusFound)
 }
 
-func Logout(w http.ResponseWriter, r *http.Request) { //remove cookie on logout
+func Logout(w http.ResponseWriter, r *http.Request) {
 	u, _ := r.Cookie("uuid")
 	cookie := http.Cookie{Name: "uuid", Value: u.String(), Expires: time.Unix(0, 0), Path: "/"}
 	http.SetCookie(w, &cookie)
@@ -75,15 +75,15 @@ func Logout(w http.ResponseWriter, r *http.Request) { //remove cookie on logout
 	template.Must(template.ParseFiles(filepath.Join(templatesDir, "./static/index.html"))).Execute(w, templ)
 }
 
-func Users(w http.ResponseWriter, r *http.Request) { //get the users of the site
+func Users(w http.ResponseWriter, r *http.Request) {
 	print("hmmm")
 }
 
-func Promoteuser(w http.ResponseWriter, r *http.Request) { //promote a user
+func Promoteuser(w http.ResponseWriter, r *http.Request) {
 	print("hmmm")
 }
 
-func Ifregistered(w http.ResponseWriter, r *http.Request) bool { //is the user registered ?
+func Ifregistered(w http.ResponseWriter, r *http.Request) bool {
 	_, err := r.Cookie("uuid")
 	if err != nil {
 		user.Level = 0

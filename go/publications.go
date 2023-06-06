@@ -14,7 +14,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func Getuser(w http.ResponseWriter, r *http.Request) { //gets the user data
+func Getuser(w http.ResponseWriter, r *http.Request) { //informations sur L'utilisateur
 	db, _ := sql.Open("sqlite3", "./database.db")
 	u, _ := r.Cookie("uuid")
 	if err := db.QueryRow("SELECT creationdate, username, level from users where uuid = ?", u.Value).Scan(&user.Creationdate, &user.Username, &user.Level); err != nil { //request going to the database
@@ -22,7 +22,7 @@ func Getuser(w http.ResponseWriter, r *http.Request) { //gets the user data
 	}
 }
 
-func Getposts(w http.ResponseWriter, r *http.Request) { //get latest 10 posts to the website
+func Getposts(w http.ResponseWriter, r *http.Request) { //affichages des 10 derniers post sur le site
 	db, _ := sql.Open("sqlite3", "./database.db")
 	rows, _ := db.Query("SELECT * FROM posts LIMIT 10")
 	defer rows.Close()
@@ -36,7 +36,7 @@ func Getposts(w http.ResponseWriter, r *http.Request) { //get latest 10 posts to
 	defer db.Close()
 }
 
-func Getpostid(w http.ResponseWriter, r *http.Request) { //get a specific post
+func Getpostid(w http.ResponseWriter, r *http.Request) { //afficher un post specifique
 	db, _ := sql.Open("sqlite3", "./database.db")
 	post_id := r.URL.Query()["post-id"]
 	rows, _ := db.Query("SELECT * FROM posts WHERE postid = ? LIMIT 3", post_id[0])
@@ -51,7 +51,7 @@ func Getpostid(w http.ResponseWriter, r *http.Request) { //get a specific post
 	defer db.Close()
 }
 
-func Addposts(w http.ResponseWriter, r *http.Request) { //add a post to the website
+func Addposts(w http.ResponseWriter, r *http.Request) { //ajouter un poste sur le forum
 	if !Ifregistered(w, r) {
 		return
 	}
@@ -75,13 +75,13 @@ func Addposts(w http.ResponseWriter, r *http.Request) { //add a post to the webs
 	dt.Format("01-02-2006 15:04:05")
 
 	db, _ := sql.Open("sqlite3", "./database.db")
-	request, _ := db.Prepare("INSERT INTO posts(creator, title, content, picture, likes, dislikes, slash, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)") // Prepare request.
+	request, _ := db.Prepare("INSERT INTO posts(creator, title, content, picture, likes, dislikes, slash, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)") // Preparation de la requete
 	_, _ = request.Exec(strcreator, title, content, picture, 0, 0, slash, dt.String())
 	http.Redirect(w, r, "/index.html", http.StatusFound)
 	defer request.Close()
 }
 
-func uploadHandler(w http.ResponseWriter, r *http.Request) string { //handle the upload of files
+func uploadHandler(w http.ResponseWriter, r *http.Request) string { //uploader un fichier
 	r.Body = http.MaxBytesReader(w, r.Body, 2*1024*1024) // 2 Mb
 	if err := r.ParseMultipartForm(2 << 20); err != nil {
 		fmt.Print(err)
@@ -91,14 +91,12 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) string { //handle the
 	if err != nil {
 		return "no picture"
 	}
-	// Create a buffer to store the header of the file in
+	// buffer pour handle le fichier
 	fileHeader := make([]byte, 512)
-	// Copy the headers into the FileHeader buffer
 	if _, err := file.Read(fileHeader); err != nil {
 		return ""
 	}
 
-	// set position back to start.
 	if _, err := file.Seek(0, 0); err != nil {
 		return ""
 	}
@@ -116,13 +114,13 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) string { //handle the
 			log.Println("Error copying", copyError)
 		}
 		str := out.Name()
-		str = str[28:] //give to database right path to img
+		str = str[28:] //donne a la db le bon chemin vers le fichier
 		return str
 	}
 	return ""
 }
 
-func Postfunc(w http.ResponseWriter, r *http.Request) { //still needs fiddling
+func Postfunc(w http.ResponseWriter, r *http.Request) { //main func
 	Ratelimit(w, r)
 	Ifregistered(w, r)
 	Addcomment(w, r)
