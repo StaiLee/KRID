@@ -5,12 +5,13 @@
 <head>
     <meta charset="utf-8">
     <title>KRID</title>
-    <link rel="icon" type="image/x-icon" href="../assets/img/KRID.png">
-    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/posts.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/csslog.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/header.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/searchbar.css">
+    <link rel="icon" type="image/x-icon" href="../static/assets/img/KRID.png">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/screen.css">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/posts.css">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/csslog.css">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/header.css">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/searchbar.css">
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/profile.css">
 </head>
 
 <body style="background-color: rgb(235, 239, 249);border-left-width: 0px;border-left-style: solid;">
@@ -42,7 +43,6 @@
             <!-- PANNEL -->
             <div class="right-container">
                 {{if (ge .User.Level 1)}}
-                <img class="notification" src="../assets/images/share.png"> {{end}}
                 <a class="about" href="/pages/about">About Us</a> {{if (eq .User.Level 0)}}
                 <a class="register" href="/pages/register">Register</a>
                 <a class="active" href="/pages/login">Log in</a> {{end}} {{if (ge .User.Level 2)}}
@@ -54,15 +54,34 @@
         </div>
     </header>
     <!-- END HEADER -->
-    <div style="display: flex;justify-content: center;">
-                {{.User.Username}} {{.User.Level}} {{.User.Creationdate}}
+
+    <!-- Main-->
+    <div class="hero">
+        <div class="profile_box">
+            <div class="profile_img">
+                <img src="../static/assets/img/Eagle.jpg" alt="Eric Eagle">
+            </div>
+            <div class="profile_name">
+                {{.User.Username}}
+            </div>
+            <div class="profile_date">
+                {{.User.Creationdate}}
+            </div>
+            <div class="profile_comments">
                 {{.Post}}
                 {{.Comments}}
                 {{.Inter}}
+            </div>
+        </div>
     </div>
 </body>
 <footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="assets/js/dropdown.js"></script>
 </footer>
+
+<!--            {{.User.Username}} {{.User.Level}} {{.User.Creationdate}}
+                {{.Post}}
+                {{.Comments}}
+                {{.Inter}}-->
 </html>

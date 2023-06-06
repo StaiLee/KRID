@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+    width: 100%;
+}
+
+.profile_box {
+    background: rgba(0, 0, 0, 0.2);
+    height: 75%;
+    width: 40%;
+    border-radius: 15px;
+}
+
+.profile_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile_name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    width: 100%;
+}
+
+.profile_date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+}
+
+.profile_comments {
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
