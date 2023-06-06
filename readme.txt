@@ -1,3 +1,2 @@
-<h1>KRID</h1>
-
+# KRID
 Forum golang with db login / register post like and comment
