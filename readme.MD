@@ -6,3 +6,6 @@ Golang html css jss SQL
 
 ## Setup
 StaiLee/Balik Back  Raphael/djibril/kaan front
+
+## Soon
+certaines fonctionnalité sont presentes dans le code mais pas encore fonctionnel tel que les report ou l'administration, manque de temps
