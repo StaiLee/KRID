@@ -1,3 +1,3 @@
-KRID TOUT EST CARRE
+#KRID 
 
-![eric](https://github.com/StaiLee/KRID/assets/102300908/18ec02c2-bb67-4462-8923-3a3e98828ff0)
+Forum golang with db login / register post like and comment
