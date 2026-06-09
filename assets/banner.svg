@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" width="1200" height="260" font-family="ui-monospace,'Courier New',monospace">
+  <defs>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#684A95"/><stop offset="100%" stop-color="#39E0D8"/></linearGradient>
+    <linearGradient id="txt" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#9a6cf5"/><stop offset="50%" stop-color="#5a8df0"/><stop offset="100%" stop-color="#39e0d8"/></linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#1b2230" stroke-width="1"/></pattern>
+  </defs>
+  <rect x="0" y="0" width="1200" height="260" rx="16" fill="#080a10"/>
+  <rect x="0" y="0" width="1200" height="260" rx="16" fill="url(#grid)" opacity="0.5"/>
+  <rect x="1" y="1" width="1198" height="258" rx="15" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <!-- left accent bar -->
+  <rect x="56" y="70" width="6" height="120" rx="3" fill="url(#edge)"/>
+  <!-- corner brackets -->
+  <path d="M24 44 H60 M24 44 V80" stroke="#39E0D8" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M1176 216 H1140 M1176 216 V180" stroke="#684A95" stroke-width="2" fill="none" opacity="0.7"/>
+  <!-- prompt tag -->
+  <text x="84" y="58" font-size="15" fill="#56627a">stailee@blackbox:~$ ./krid</text>
+  <!-- name -->
+  <text x="82" y="142" font-size="58" font-weight="700" fill="url(#txt)" letter-spacing="1">KRID</text>
+  <!-- tagline -->
+  <text x="84" y="180" font-size="22" font-weight="600" fill="#c9d1d9">Full-Stack Forum Engine</text>
+  <!-- sub -->
+  <text x="84" y="210" font-size="15" fill="#56a8ff">&#8227; Go · SQL · auth · likes · rate-limiting</text>
+  <!-- right blinking cursor block -->
+  <rect x="1110" y="120" width="16" height="28" fill="#39E0D8" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;0.9;0;0;0.9" keyTimes="0;0.5;0.5;1;1" dur="1.1s" repeatCount="indefinite"/>
+  </rect>
+</svg>
